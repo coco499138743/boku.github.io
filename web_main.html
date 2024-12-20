@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSYMO - Caltech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #ffffff;
+            color: #333;
+            padding: 5px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 5px;
+        }
+        header h1 {
+            color: #ff6600;
+            font-size: 1.6em;
+            margin: 0;
+        }
+        header p {
+            margin: 0;
+            font-size: 1em;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        nav .search input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 20px 0;
+            height: 300px;
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .news {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .news-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .news-text {
+            flex: 1;
+            background: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .news-video {
+            flex: 1;
+        }
+        iframe {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #004080;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>COSYMO</h1>
+    <p>Computational Modeling for Scientific Innovation</p>
+</header>
+
+<nav>
+    <div class="navigation">
+        <a href="people.html">People</a>
+        <a href="#">News</a>
+        <a href="#">Publications</a>
+        <a href="#">Research</a>
+        <a href="#">Opportunities</a>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search">
+    </div>
+</nav>
+
+<div class="container">
+    <section id="home" class="section">
+        <div class="carousel">
+            <img src="image1.jpg" alt="Slide 1" class="active">
+            <img src="image2.jpg" alt="Slide 2">
+            <img src="image3.jpg" alt="Slide 3">
+            <div class="carousel-controls">
+                <button id="prev">&#10094;</button>
+                <button id="next">&#10095;</button>
+            </div>
+        </div>
+        <h2>Welcome to COSYMO</h2>
+        <p>Explore our innovative computational tools and models for scientific research. Use the navigation above to learn more about our project, models, publications, and how to contact us.</p>
+
+        <div class="news">
+            <div class="news-item">
+                <div class="news-text">
+                    <h3>COSYMO in the News</h3>
+                    <ul>
+                        <li>Apples News: Study: Ants create stable tunnels in nests, much like humans play Jenga</li>
+                        <li>New Scientist.com: Ants use soil physics to excavate metre-long tunnels that last decades</li>
+                        <li>Caltech: The Science of Underground Kingdoms</li>
+                        <li>Nature: The smart chain mail fabric that can stiffen on demand</li>
+                    </ul>
+                </div>
+                <div class="news-video">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video 1"></iframe>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-text">
+                    <h3>More Updates</h3>
+                    <p>Discover the latest advancements and stories related to our computational modeling initiatives.</p>
+                </div>
+                <div class="news-video">
+                    <iframe src="https://www.youtube.com/embed/3JZ_D3ELwOQ" title="Video 2"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 COSYMO. All Rights Reserved. | Caltech</p>
+</footer>
+
+<script>
+    const images = document.querySelectorAll('.carousel img');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        images.forEach((img, i) => {
+            img.classList.toggle('active', i === index);
+        });
+    }
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showSlide(currentIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        showSlide(currentIndex);
+    });
+</script>
+
+</body>
+</html>
